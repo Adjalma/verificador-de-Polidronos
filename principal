@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Palíndromo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #text-input {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #check-btn {
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #check-btn:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #333;
+            min-height: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificador de Palíndromo</h1>
+        <div class="input-section">
+            <input type="text" id="text-input" placeholder="Digite um texto...">
+            <button id="check-btn">Verificar</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('check-btn').addEventListener('click', function() {
+            const textInput = document.getElementById('text-input');
+            const result = document.getElementById('result');
+            const text = textInput.value;
+
+            if (!text) {
+                alert('Please input a value');
+                return;
+            }
+
+            function isPalindrome(str) {
+                // Remove caracteres não alfanuméricos e converte para minúsculas
+                const cleanStr = str.replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+                
+                // Compara a string com sua versão invertida
+                return cleanStr === cleanStr.split('').reverse().join('');
+            }
+
+            const palindromeResult = isPalindrome(text);
+            result.textContent = `${text} is ${palindromeResult ? 'a' : 'not a'} palindrome`;
+        });
+    </script>
+</body>
+</html>
